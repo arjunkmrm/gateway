@@ -6,17 +6,17 @@ startCommand:
   configSchema:
     # JSON Schema defining the configuration options for the MCP.
     type: object
+    required:
+      - PathToGatewayYAMLConfig
     properties:
-      connection-string:
+      PathToGatewayYAMLConfig:
         type: string
-        description: Database connection string (DSN) for direct database connection. eg postgresql://[user]:[password]@[host]:[port]/postgres
+        description: Path to the gateway YAML configuration file
   commandFunction:
     # A function that produces the CLI command to start the MCP on stdio.
     |-
-    (config) => ({
-      "command": "start stdio",
-      "args": [        
-        "--raw=true",        
-      ],
-      "env": {}
+    (config) => ({ 
+      command: 'gateway', 
+      args: ['start', '--config', config.PathToGatewayYAMLConfig, 'mcp-stdio'],
+      env: {}
     })
