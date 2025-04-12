@@ -50,4 +50,4 @@ COPY --from=builder /app/gateway /usr/local/bin/gateway
 # Switch to non-privileged user
 USER gateway
 
-ENTRYPOINT ["/usr/local/bin/gateway"@]
+ENTRYPOINT ["/usr/local/bin/gateway"]
