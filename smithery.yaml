@@ -1,8 +1,8 @@
 # Smithery.ai configuration
+build:
+  dockerfile: Dockerfile-smithery.build
 startCommand:
   type: stdio
-  build:
-    dockerfile: Dockerfile-smithery.build
   configSchema:
     # JSON Schema defining the configuration options for the MCP.
     type: object
@@ -18,4 +18,5 @@ startCommand:
       "args": [        
         "--raw=true",        
       ],
+      "env": {}
     })
