@@ -7,16 +7,16 @@ startCommand:
     # JSON Schema defining the configuration options for the MCP.
     type: object
     required:
-      - PathToGatewayYAMLConfig
+      - ConnectionString
     properties:
-      PathToGatewayYAMLConfig:
+      ConnectionString:
         type: string
-        description: Path to the gateway YAML configuration file
+        description: Connection string for the database
   commandFunction:
     # A function that produces the CLI command to start the MCP on stdio.
     |-
     (config) => ({ 
       command: 'gateway', 
-      args: ['start', '--config', config.PathToGatewayYAMLConfig, 'mcp-stdio'],
+      args: ['start', '--raw=true', '--connection-string', config.ConnectionString, 'mcp-stdio'],
       env: {}
     })
